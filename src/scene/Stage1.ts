@@ -44,7 +44,7 @@ export default class Stage1 extends Phaser.Scene {
     const tileset = map.addTilesetImage("tiles", undefined, 32, 32);
     const layer = map.createBlankLayer("groundLayer", tileset!);
     layer?.setScale(4, 4);
-    layer.setDepth(3);
+    layer?.setDepth(3);
     console.log("tileset", layer);
     // isi baris bawah pakai index tile yang bukan transparan
     const groundHeight = 8; // tinggi tanah 8 tile
@@ -52,7 +52,7 @@ export default class Stage1 extends Phaser.Scene {
     const groundY = 10;
     console.log("map.width", map.width);
     for (let x = 0; x < map.width; x++) {
-      layer.putTileAt(1, x, groundY);
+      layer?.putTileAt(1, x, groundY);
     }
 
     for (let x = 1000; x < map.widthInPixels; x += 1000) {
@@ -64,7 +64,7 @@ export default class Stage1 extends Phaser.Scene {
     }
 
     // aktifkan physics
-    layer.setCollisionByExclusion([-1]);
+    layer?.setCollisionByExclusion([-1]);
 
     // Biar kelihatan: set kamera background putih dulu
     // this.cameras.main.setBackgroundColor("#88f");
@@ -75,7 +75,7 @@ export default class Stage1 extends Phaser.Scene {
 
     // collider player dengan tilemap layer
     if (this.player.sprite) {
-      this.physics.add.collider(this.player.sprite, layer);
+      this.physics.add.collider(this.player.sprite, layer!);
     }
     this.hpBar = new HpBar(this, 120, 70, 100);
 
